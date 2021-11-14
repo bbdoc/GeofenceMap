@@ -1,0 +1,56 @@
+
+  #searchBox{
+    width: 100px;
+    background: transparent;
+
+  }
+  .search{
+    top: -10px;
+    z-index: 9000;
+    background: transparent;
+  }
+  .foundAreas{
+    z-index: 999;
+    align-items:right;
+    right: 0;
+    opacity: 100 !important;
+  }
+  .searchResultBox{
+    right: 0;
+    float: right;
+    z-index: 9999;
+    background: transparent;
+    opacity: .94;
+  }
+  .geofencesArea{
+    left: 0;
+    float: left;
+    overflow-y: scroll;
+    z-index: 9999;
+    background: transparent;
+    opacity: .94;
+
+  }
+  .popup {
+    border: 2px solid gray;
+    height:30px;
+    width:50px;
+  }
+
+  .slide-fade-enter-active {
+    transition: all .6s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter{
+    transform: translateX(10px);
+    opacity: 1;
+  }
+  .transparent {
+    background-color: transparent!important;
+    border-color: transparent!important;
+  }
+  .scroll {
+    overflow-y: auto;
+  }
