@@ -1,0 +1,408 @@
+div.colorPicker-picker {
+    height: 16px;
+    width: 16px;
+    padding: 0 !important;
+    border: 1px solid #ccc;
+    background: url(../arrow.gif) no-repeat top right;
+    cursor: pointer;
+    line-height: 16px;
+    font-size: 0.75em;
+    font-weight: bold;
+    text-align: center;
+}
+
+div.colorPicker-palette {
+    width: 110px;
+    position: absolute;
+    border: 1px solid #598FEF;
+    background-color: #EFEFEF;
+    padding: 2px;
+    z-index: 9999;
+}
+
+div.colorPicker_hexWrap {
+    width: 100%;
+    float: left;
+}
+
+div.colorPicker_hexWrap label {
+    font-size: 95%;
+    color: #2F2F2F;
+    margin: 5px 2px;
+    width: 25%;
+}
+
+div.colorPicker_hexWrap input {
+    margin: 5px 2px;
+    padding: 0;
+    font-size: 95%;
+    border: 1px solid #000;
+    width: 65%;
+}
+
+div.colorPicker-swatch {
+    height: 12px;
+    width: 12px;
+    border: 1px solid #000;
+    margin: 2px;
+    float: left;
+    cursor: pointer;
+    line-height: 12px;
+}
+
+
+/* =========================================
+   Page générale
+   ========================================= */
+
+body,
+html {
+    font-family: Arial;
+    font-size: 10pt;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+textarea {
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   Dialogues
+   ========================================= */
+
+.dialog {
+    display: none;
+    position: fixed;
+    z-index: 5;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+}
+
+.dialog-content {
+    background-color: #ECF0F1;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 15px;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dialog-content-submit {
+    text-align: center;
+}
+
+
+/* =========================================
+   Boutons
+   ========================================= */
+
+.btn {
+    display: inline-block;
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    color: #ffffff;
+    width: 50px;
+    font-size: 14px;
+    background: #3498DB;
+    text-shadow: 0px 1px 0px #2f6627;
+    padding: 5px;
+    margin: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    opacity: 1;
+    box-sizing: content-box;
+}
+
+.btn:hover {
+    opacity: 0.75;
+}
+
+.bred {
+    background: #EB3B50;
+}
+
+.bgreen {
+    background: #59B557;
+}
+
+.bgrey {
+    background: #888888;
+}
+
+.fenceb {
+    font-size: 8pt;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    width: auto;
+    padding: 2px 5px;
+    margin: 2px;
+}
+
+.barrow {
+    background: #468966;
+}
+
+
+/* =========================================
+   Liste des geofences
+   ========================================= */
+
+.fence {
+    color: #ECF0F1;
+    font-weight: bold;
+    padding: 5px;
+    margin: 5px;
+    vertical-align: middle;
+    background-color: white;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+}
+
+
+/* =========================================
+   Ancienne structure des dialogues
+   ========================================= */
+
+.dia-table {
+    width: 100%;
+    display: table;
+}
+
+.dia-row {
+    background: black;
+    width: 100%;
+}
+
+.dia-cell {
+    float: left;
+}
+
+
+/* =========================================
+   Titres
+   ========================================= */
+
+.title {
+    color: #2C3E50;
+    font-weight: bold;
+    font-size: 14pt;
+    flex: 0 1 auto;
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   Overlay pendant le dessin
+   ========================================= */
+
+#fence-mgr-overlay {
+    display: none;
+    color: #ECF0F1;
+    position: fixed;
+    z-index: 5;
+    padding: 0;
+    padding-top: 300px;
+    left: 0;
+    top: 0;
+    width: 310px;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   Gestionnaire
+   ========================================= */
+
+#fence-mgr {
+    flex: 0 1 auto;
+    margin: auto;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#fence-list {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#ad-space {
+    width: 100%;
+    height: 280px;
+}
+
+
+/* =========================================
+   Layout principal
+   ========================================= */
+
+#editor {
+    width: 100%;
+    height: 100%;
+    background-color: #ECF0F1;
+}
+
+#controls {
+    background-color: #ECF0F1;
+    height: 100%;
+    width: 310px;
+    float: left;
+    display: flex;
+    flex-flow: column;
+}
+
+#map-canvas {
+    height: 100%;
+    overflow: hidden;
+    width: auto;
+}
+
+
+/* =========================================
+   Popup EXPORT / bouton "exp"
+   ========================================= */
+
+#output-dialog .dialog-content.output-dialog-content {
+    width: 520px !important;
+    max-width: calc(100vw - 40px) !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+
+/* En-tête du popup */
+
+#output-dialog .output-dialog-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px;
+    width: 100%;
+    margin: 0 0 12px 0;
+    box-sizing: border-box;
+}
+
+#output-dialog .output-dialog-header .title {
+    margin: 0 !important;
+    text-align: left;
+    flex: 1 1 auto;
+}
+
+
+/* Checkbox Include [NAME] */
+
+#output-dialog .output-name-option {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    font-size: 13px;
+    color: #2C3E50;
+    flex: 0 0 auto;
+}
+
+#output-dialog .output-name-option input {
+    margin: 0 3px 0 0;
+}
+
+
+/* Zone contenant les coordonnées */
+
+#output-dialog textarea#output-data {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    height: 260px !important;
+    min-height: 260px !important;
+
+    margin: 0 !important;
+    padding: 8px !important;
+
+    border: 1px solid #888;
+    border-radius: 3px;
+
+    box-sizing: border-box !important;
+
+    resize: vertical !important;
+
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.4;
+
+    background-color: #ffffff;
+    color: #000000;
+}
+
+
+/* Boutons Download / Close */
+
+#output-dialog .dialog-content-submit {
+    width: 100%;
+    margin-top: 12px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#output-dialog #output-download {
+    width: 70px !important;
+}
+
+
+/* =========================================
+   Responsive
+   ========================================= */
+
+@media screen and (max-width: 600px) {
+
+    #output-dialog {
+        padding-top: 30px;
+    }
+
+    #output-dialog .dialog-content.output-dialog-content {
+        width: calc(100vw - 20px) !important;
+        max-width: calc(100vw - 20px) !important;
+        padding: 15px !important;
+    }
+
+    #output-dialog .output-dialog-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 8px;
+    }
+
+    #output-dialog textarea#output-data {
+        height: 220px !important;
+        min-height: 220px !important;
+    }
+}

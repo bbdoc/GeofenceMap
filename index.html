@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title>Fence Editor/Creator</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsrU8E8KHxAn0pbfVQ1yjifLNsDkzD_aE&libraries=geometry"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="style.css?v=20260914-2">
+    <script src="geofence.js?v=20260914-2"></script>
+    
+</head>
+
+<body>
+    <div id="editor">
+        <div id="controls">
+            <div class="title">A Geofence Editor</div>
+            <div id="fence-mgr-overlay" style="text-align: center">Finish editing..</div>
+            <div id="fence-mgr">
+                <a id="save-cfg" class="btn">Save</a>
+                <a id="load-cfg" class="btn">Load</a>
+                <a id="fence-dialog-show" class="btn">Create</a>
+            </div>
+            <div id="fence-list"></div>
+        </div>
+        <div id="map-canvas"></div>
+    </div>
+    <div id="fence-dialog" class="dialog">
+        <div class="dialog-content">
+            <span class="title">Create/import a Geofence</span><br />Enter a name and color and optionally load in a set of coordinates (each pair of coordinates on a seperate line as Lat,Lng).
+            <table style="padding: 20px">
+                <tbody>
+                    <tr>
+                        <td style="width: 200px; font-weight: bold">Fence Name:</td>
+                        <td style="width: 200px"><input id="fence-name" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px; font-weight: bold">Fence Color Code:</td>
+                        <td style="width: 200px"><div class="controlset"><input id="fence-color" name="fence-color" type="text" value="6CB1E1" maxlength="10" /></div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px"><span style=" font-weight: bold">Coordinate Set:</span><br /><span style="font-size:8pt">Leave blank to draw a new polygon on the map.</span></td>
+                        <td style="width: 200px"><textarea rows="10" cols="50" id="fence-data"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="dialog-content-submit">
+                <a id="create-fence" class="btn bgreen">Create</a>
+                <a id="fence-dialog-hide" class="btn bred">Cancel</a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="delete-dialog" class="dialog">
+        <div class="dialog-content" style="width: 350px">
+            <span class="title">Are you sure?</span>
+
+            <div class="dialog-content-submit">
+                <a id="confirm-delete" class="btn bgreen">Yes</a>
+                <a id="delete-dialog-hide" class="btn bred">No</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="output-dialog" class="dialog">
+        <div class="dialog-content output-dialog-content">
+            <div class="output-dialog-header">
+                <span id="output-name" class="title"></span>
+    
+                <label class="output-name-option">
+                    <input
+                        type="checkbox"
+                        id="output-download-name"
+                        name="output-download-name"
+                    />
+                    Include [NAME]
+                </label>
+            </div>
+    
+            <textarea id="output-data"></textarea>
+    
+            <div class="dialog-content-submit">
+                <a id="output-download" class="btn bgreen">Download</a>
+                <a id="output-close" class="btn bgreen">Close</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="loader-dialog" class="dialog">
+        <div class="dialog-content" style="width: 400px">
+            <span id="loader-name" class="title">Config Importer. This will reset the map!<br /></span>
+            <div class="dialog-content-submit">
+                <input type="file" id="loader-file" value="Import" /><a id="loader-go" class="btn bred">Load</a><br />
+                <input type="text" id="loader-url" value="" /><a id="loader-url" class="btn bred" style="width: 80px; margin-left: 40px;">Load URL</a><br />
+                <a id="loader-close" class="btn bgreen">Close</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="download-dialog" class="dialog">
+        <div class="dialog-content" style="width: 245px">
+            <a id="download-go" class="btn bgreen" style="width:120px">Click to Download</a>
+            <a id="download-close" class="btn bgreen">Close</a>
+        </div>
+    </div>
+</body>
+
+</html>
